@@ -64,7 +64,7 @@ const { boostImage, boost } = require('ultrax');
 boost.init(client);
 
 client.on('boost', async (booster) => {
-  const channel = client.channels.cache.get('1171038750806118451');
+  const channel = client.channels.cache.get('1173381036957249587');
   const avatar = booster.user.displayAvatarURL({ format: 'png' });
   const boostCard = boostImage(avatar);
 

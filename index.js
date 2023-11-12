@@ -74,5 +74,13 @@ client.on('boost', async (booster) => {
     .setColor('#FF39F8');
   channel.send({ embeds: [embed] });
 });
+
+const { inviteLogger } = require("ultrax");
+inviteLogger.init(client);
+
+client.on('inviteJoin', (member, invite, inviter) => {
+  const channel = client.channels.cache.get('1173383656333656264');
+  channel.send(`${member.user.tag} rejoint en utilisant le code d'invitation ${invite.code} de ${inviter.tag}. L'invitation a été utilisée ${invite.uses} fois depuis sa création.`); // => Iliannnn#0001 joined using the invite code Dx7aRg7Q from UltraX#0001. Invite was used 1 time(s) since its creation.
+});
   
 client.login(process.env.DISCORD_TOKEN);

@@ -60,5 +60,19 @@ client.on('messageCreate', async (message) => {
       console.log(`User: ${message.author.tag}, Level: ${userLevel.level}, Experience: ${userLevel.experience}`);
     }
   });
+const { boostImage, boost } = require('ultrax');
+boost.init(client);
+
+client.on('boost', async (booster) => {
+  const channel = client.channels.cache.get('1171038750806118451');
+  const avatar = booster.user.displayAvatarURL({ format: 'png' });
+  const boostCard = boostImage(avatar);
+
+  const embed = new MessageEmbed()
+    .setDescription(`${booster.user.toString()} a boosté le serveur!`)
+    .setImage(boostCard)
+    .setColor('#FF39F8');
+  channel.send({ embeds: [embed] });
+});
   
 client.login(process.env.DISCORD_TOKEN);

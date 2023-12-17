@@ -1,13 +1,13 @@
 const { MessageEmbed } = require("discord.js");
 
 module.exports = {
-    name: 'lock',
+    name: 'createrole',
     category: 'modération',
-    permissions: ['MANAGE_CHANNELS'],
+    permissions: ['MANAGE_ROLES'],
     ownerOnly: false,
-    usage: 'lock',
-    exemples: ['lock'],
-    description: 'lock un channel',
+    usage: 'createrole',
+    exemples: ['createrole'],
+    description: 'createrole un channel',
      async run(client, message, args) {
         const roleName = message.content.split(" ")[1];
         if (!roleName) {

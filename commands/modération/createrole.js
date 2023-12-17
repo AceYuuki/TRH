@@ -22,10 +22,10 @@ module.exports = {
             reason: 'Role needed for XYZ'
         });
 
-        message.channel.send(`Role ${role.name} created successfully!`);
+        message.channel.send(`Le role ${role.name} a été créé avec succès !`);
         } catch (error) {
         console.error(error);
-        message.channel.send("An error occurred while creating the role.");
+        message.channel.send("Une erreur s'est produite lors de la création du rôle.");
         }
     },
     options: [
@@ -46,10 +46,10 @@ module.exports = {
             reason: 'Role needed for XYZ'
         });
 
-        await interaction.reply(`Role ${role.name} created successfully!`);
+        await interaction.reply(`Le role ${role.name} a été créé avec succès !`);
         } catch (error) {
         console.error(error);
-        await interaction.reply("An error occurred while creating the role.");
+        await interaction.reply("Une erreur s'est produite lors de la création du rôle.");
         }
     }
 }

@@ -130,7 +130,7 @@ async function checkTwitchStreams() {
             if (!liveStreamIds.has(stream.id)) { // Vérifie si le stream est nouveau
                 const discordChannel = client.channels.cache.get(notificationChannelId);
                 if (discordChannel) {
-                    discordChannel.send(`Hey @everyone, ${stream.user_name} a commencé à streamer sur Twitch! Allez voir ici : https://www.twitch.tv/${stream.user_login}`);
+                    discordChannel.send(`Hey <@&1185749271702667344>, ${stream.user_name} a commencé à streamer sur Twitch! Allez voir ici : https://www.twitch.tv/${stream.user_login}`);
                 }
             }
         });

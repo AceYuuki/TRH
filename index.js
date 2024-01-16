@@ -82,5 +82,68 @@ client.on('inviteJoin', (member, invite, inviter) => {
   const channel = client.channels.cache.get('1173383656333656264');
   channel.send(`${member.user.tag} rejoint en utilisant le code d'invitation ${invite.code} de ${inviter.tag}. L'invitation a été utilisée ${invite.uses} fois depuis sa création.`); // => Iliannnn#0001 joined using the invite code Dx7aRg7Q from UltraX#0001. Invite was used 1 time(s) since its creation.
 });
+
+
+const twitchClientID = '611lxhuzhweu8tnhjdgbox6xa88o0o';
+const twitchClientSecret = '0e271ri67hj90s6niq9ajyu7frbrrf';
+const twitchUsernames = ['trhyam', 'iyokada']; // Noms d'utilisateur Twitch à surveiller
+const notificationChannelId = '1172664742301679748'; // ID du canal Discord pour les notifications
+
+let twitchAccessToken;
+let twitchUserIds = {};
+
+async function getTwitchAccessToken() {
+    const response = await axios.post(`https://id.twitch.tv/oauth2/token?client_id=${twitchClientID}&client_secret=${twitchClientSecret}&grant_type=client_credentials`);
+    twitchAccessToken = response.data.access_token;
+}
+
+async function getTwitchUserIds() {
+    const response = await axios.get(`https://api.twitch.tv/helix/users?login=${twitchUsernames.join('&login=')}`, {
+        headers: {
+            'Client-ID': twitchClientID,
+            'Authorization': `Bearer ${twitchAccessToken}`
+        }
+    });
+
+    response.data.data.forEach(user => {
+        twitchUserIds[user.login] = user.id;
+    });
+}
+
+let liveStreamIds = new Set(); // Variable pour suivre les streams en direct
+
+async function checkTwitchStreams() {
+    try {
+        const userIds = Object.values(twitchUserIds).join('&user_id=');
+        const response = await axios.get(`https://api.twitch.tv/helix/streams?user_id=${userIds}`, {
+            headers: {
+                'Client-ID': twitchClientID,
+                'Authorization': `Bearer ${twitchAccessToken}`
+            }
+        });
+
+        const currentStreams = response.data.data;
+        const currentStreamIds = new Set(currentStreams.map(stream => stream.id));
+
+        currentStreams.forEach(stream => {
+            if (!liveStreamIds.has(stream.id)) { // Vérifie si le stream est nouveau
+                const discordChannel = client.channels.cache.get(notificationChannelId);
+                if (discordChannel) {
+                    discordChannel.send(`Hey @everyone, ${stream.user_name} a commencé à streamer sur Twitch! Allez voir ici : https://www.twitch.tv/${stream.user_login}`);
+                }
+            }
+        });
+
+        liveStreamIds = currentStreamIds; // Met à jour la liste des streams en direct
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+module.exports = {
+  getTwitchAccessToken,
+  getTwitchUserIds,
+  checkTwitchStreams
+};
   
 client.login(process.env.DISCORD_TOKEN);

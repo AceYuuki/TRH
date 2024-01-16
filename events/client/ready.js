@@ -1,4 +1,5 @@
 const Logger = require('../../utils/Logger');
+const { getTwitchAccessToken, getTwitchUserIds, checkTwitchStreams } = require('../../index.js'); // Import des fonctions
 
 module.exports = {
     name: 'ready',
@@ -23,5 +24,10 @@ module.exports = {
             i = ++i % statuses.length
         }, 1e4)
         client.user.setStatus('dnd');
+        getTwitchAccessToken().then(() => {
+            getTwitchUserIds().then(() => {
+                setInterval(checkTwitchStreams, 60000); // Vérifie toutes les minutes
+            });
+        });
     }
 }

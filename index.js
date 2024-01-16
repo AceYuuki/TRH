@@ -86,7 +86,7 @@ client.on('inviteJoin', (member, invite, inviter) => {
 
 const twitchClientID = process.env.TWITCH_ID;
 const twitchClientSecret = process.env.TWITCH_SECRET;
-const twitchUsernames = ['trhyam', 'iyokada']; // Noms d'utilisateur Twitch à surveiller
+const twitchUsernames = ['trhyam', 'iyokada', 'trh_ares' ]; // Noms d'utilisateur Twitch à surveiller
 const notificationChannelId = '1167127156535607406'; // ID du canal Discord pour les notifications
 
 let twitchAccessToken;

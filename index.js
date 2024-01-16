@@ -6,6 +6,7 @@ const Logger = require('./utils/Logger');
 ['commands', 'buttons', 'selects'].forEach(x => client[x] = new Collection());
 ['CommandUtil', 'EventUtil', 'ButtonUtil', 'SelectUtil'].forEach(handler => { require(`./utils/handlers/${handler}`)(client)});
 require('./utils/Function.js')(client);
+const axios = require('axios');
 
 process.on('exit', code => {
     Logger.client(`le processus s\'est arrêté avec le code : ${code}`)

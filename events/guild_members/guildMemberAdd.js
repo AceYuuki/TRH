@@ -9,7 +9,8 @@ const { MessageAttachment, MessageEmbed } = require('discord.js');
     // Création du canvas et chargement de l'image de fond
     const canvas = createCanvas(1024, 507);
     const ctx = canvas.getContext('2d');
-    const background = await loadImage('https://media.discordapp.net/attachments/1097169387770876065/1118662569775878265/fond.jpg');
+    const backgroundImagePath = path.join(__dirname, '..', '..', 'fond.jpg');
+    const background = await loadImage(backgroundImagePath);
     ctx.drawImage(background, 0, 0, 1024, 507);
   
     // Dessiner le texte de bienvenue

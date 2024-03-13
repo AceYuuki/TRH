@@ -7,6 +7,7 @@ const Logger = require('./utils/Logger');
 ['CommandUtil', 'EventUtil', 'ButtonUtil', 'SelectUtil'].forEach(handler => { require(`./utils/handlers/${handler}`)(client)});
 require('./utils/Function.js')(client);
 const axios = require('axios');
+require('./modalSubmit.js')(client);
 
 process.on('exit', code => {
     Logger.client(`le processus s\'est arrêté avec le code : ${code}`)

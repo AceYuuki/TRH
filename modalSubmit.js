@@ -13,11 +13,14 @@ module.exports = (client) => {
         const embed = new MessageEmbed()
         .setTitle('Recrutement Staff')
         .setDescritpion(`
-        Name: ${nameResponse} 
+        Name | Prénom: ${nameResponse} 
         Pseudo: ${pseudoResponse}
-        About you: ${aboutResponse}
-        Motivation: ${motivationResponse}
-        Objectif: ${objectifResponse}
+        About you | À propos de vous: ${aboutResponse}
+        Motivations: ${motivationResponse}
+        Objective | Objectif: ${objectifResponse}
+
+        FR: Cette personne a donc postulé pour être staff.
+        EN: So this person applied to be staff.
         
         `)
             channeSend.send({embeds: [embed]});

@@ -10,9 +10,9 @@ module.exports = {
 
         Logger.ready(` - Connecté pour ${usersCount} utilisateurs sur ${guildCount.size} serveurs discord !`);
         
-        //const devGuild = await client.guilds.cache.get(process.env.GUILD_ID);
-        //devGuild.commands.set(client.commands.map(cmd => cmd));
-        client.application.commands.set(client.commands.map(cmd => cmd));
+        const devGuild = await client.guilds.cache.get(process.env.GUILD_ID);
+        devGuild.commands.set(client.commands.map(cmd => cmd));
+        //client.application.commands.set(client.commands.map(cmd => cmd));
 
         const statuses = [
             () => `${client.guilds.cache.reduce((acc, guild) => acc + guild.memberCount, 0)} utilisateurs m'utilisent !`,

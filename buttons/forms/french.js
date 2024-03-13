@@ -51,12 +51,6 @@ module.exports = {
             modal.addComponents(firstActionRow, secondActionRow, aboutRow, motivationRow, objectifRow);
             
             await interaction.showModal(modal);
-            
-
-
-
-
-
-
+    
     }
 };

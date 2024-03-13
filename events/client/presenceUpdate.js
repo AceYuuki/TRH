@@ -6,11 +6,11 @@ module.exports = {
     const roleID = fetchGuild.soutient; // Remplacez par l'ID du rôle que vous souhaitez attribuer
     const inviteLink = fetchGuild.linkSoutient;
     const member = newPresence.member;
-
+    if (!member) return;
     if (member) {
       const customStatusActivity = newPresence.activities.find(
         (activity) => activity.type === 'CUSTOM'
-      );
+      )
 
       if (customStatusActivity && customStatusActivity.state.includes(inviteLink)) {
         const role = member.guild.roles.cache.get(roleID);
@@ -33,6 +33,6 @@ module.exports = {
           }
         }
       }
-    }
+    } 
   },
 };

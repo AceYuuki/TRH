@@ -12,7 +12,7 @@ module.exports = (client) => {
         modal.reply({content: 'interaction réussi', ephemeral: true})
         const embed = new MessageEmbed()
         .setTitle('Recrutement Staff')
-        .setDescritpion(`
+        .setDescription(`
         Name | Prénom: ${nameResponse} 
         Pseudo: ${pseudoResponse}
         About you | À propos de vous: ${aboutResponse}

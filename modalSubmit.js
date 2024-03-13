@@ -13,13 +13,14 @@ module.exports = (client) => {
         const embed = new MessageEmbed()
         .setTitle('Recrutement Staff')
         .setDescritpion(`
-        Bonjour, 
-        Le formulaire de 
+        Name: ${nameResponse} 
+        Pseudo: ${pseudoResponse}
+        About you: ${aboutResponse}
+        Motivation: ${motivationResponse}
+        Objectif: ${objectifResponse}
         
         `)
-            channeSend.send(
-                `Thank you for answering the form! Powered by discord-modals.\nSo, you are **${nameResponse}**. Awesome!`,
-            );
+            channeSend.send({embeds: [embed]});
         }
     });
 };

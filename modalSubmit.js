@@ -9,7 +9,7 @@ module.exports = (client) => {
             const motivationResponse = modal.getTextInputValue('motivation');
             const objectifResponse = modal.getTextInputValue('objectif');
         const channeSend = client.channels.cache.get('1216680895101141042');
-        modal.reply({content: 'interaction réussi', ephemeral: true})
+        modal.reply({content: 'interaction réussi', ephemeral: true});
         const embed = new MessageEmbed()
         .setTitle('Recrutement Staff')
         .setDescription(`
